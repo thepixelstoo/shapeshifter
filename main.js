@@ -354,6 +354,10 @@
 
     setTimeout(function () {
       display.classList.remove('on')
+      
+      if (levelUp) {
+        window.location.reload()
+      }
     }, 3000)
   }
 
