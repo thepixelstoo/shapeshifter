@@ -201,7 +201,7 @@
     mFresnelBias: { type: 'f', value: 0.95 },
     mFresnelPower: { type: 'f', value: 2.0 },
     mFresnelScale: { type: 'f', value: 1.0 },
-    tCube: { type: 't', value: refractCamera.renderTarget } //  textureCube }
+    tCube: { type: 't', value: refractCamera.renderTarget }
   }
 
   var material = new THREE.ShaderMaterial({
@@ -222,7 +222,7 @@
       mFresnelBias: { type: 'f', value: 0.01 },
       mFresnelPower: { type: 'f', value: 0.62 },
       mFresnelScale: { type: 'f', value: 0.02 },
-      tCube: { type: 't', value: refractCamera.renderTarget } //  textureCube }
+      tCube: { type: 't', value: refractCamera.renderTarget }
     }
 
     material = new THREE.ShaderMaterial({
@@ -292,12 +292,14 @@
                 cubex.position.x = Math.sin(i * 3.5) * i
                 cubex.position.y = Math.sin(j * 0.5) * j
                 cubex.position.z = k
+                break
               case 4:
                 var cube = new THREE.TetrahedronGeometry(2)
                 var cubex = new THREE.Mesh(cube, material)
                 cubex.position.x =  i
                 cubex.position.y = Math.sin(j) + Math.cos(j * 10) * k
                 cubex.position.z = Math.sin(k) + Math.cos(k * 10) * k
+                break
             }
 
             cubexArr.push(cubex)
@@ -306,8 +308,6 @@
         }
       }
     }
-
-    //refractCamera.position = cubex[0].position
   }
 
   function init() {
