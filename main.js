@@ -169,7 +169,7 @@
 
   var cubexArr = []
   
-  var axisHelper = new THREE.AxisHelper(100)
+  var axisHelper = new THREE.AxesHelper(100)
   scene.add(axisHelper)
 
   var light = new THREE.PointLight(0xffffff)
