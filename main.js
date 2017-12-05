@@ -168,6 +168,9 @@
   camera.lookAt(scene.position)
 
   var cubexArr = []
+  
+  var axisHelper = new THREE.AxisHelper(100)
+  scene.add(axisHelper)
 
   var light = new THREE.PointLight(0xffffff)
   light.position.set(110,250,0)
