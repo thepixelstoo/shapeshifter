@@ -117,12 +117,12 @@
     ],
     4: [
       {
-        x: -0.0965,
-        y: 0.0162,
-        z: -0.9952
+        x: 0.5052,
+        y: -0.7079,
+        z: 0.4936
       },
       {
-        x: 0.6038,
+        x: 0.6038,// resume
         y: -0.1775,
         z: -0.7771
       },
@@ -235,16 +235,14 @@
     lightadv.position.set(110,150,10)
 
     scene.add(lightadv)
-  }
-
-  if (currLevel === 4) {
+  } else if (currLevel === 4) {
     recursions = currLevel * 2.0
 
     fresnelUniforms = {
-      mRefractionRatio: { type: 'f', value: 11.52 },
-      mFresnelBias: { type: 'f', value: 1.01 },
-      mFresnelPower: { type: 'f', value: 1.62 },
-      mFresnelScale: { type: 'f', value: 0.02 },
+      mRefractionRatio: { type: 'f', value: 0.52 },
+      mFresnelBias: { type: 'f', value: 1.0 },
+      mFresnelPower: { type: 'f', value: 0.92 },
+      mFresnelScale: { type: 'f', value: 0.2 },
       tCube: { type: 't', value: refractCamera.renderTarget } //  textureCube }
     }
 
@@ -253,11 +251,6 @@
       vertexShader: fShader.vertexShader,
       fragmentShader: fShader.fragmentShader
     })
-
-    var lightadv = new THREE.AmbientLight('#0ea6af')
-    lightadv.position.set(110,150,10)
-
-    scene.add(lightadv)
   }
 
   function createCubes() {
@@ -294,11 +287,11 @@
                 cubex.position.z = k
                 break
               case 4:
-                var cube = new THREE.TetrahedronGeometry(2)
+                var cube = new THREE.TetrahedronGeometry(1.5)
                 var cubex = new THREE.Mesh(cube, material)
-                cubex.position.x =  i
-                cubex.position.y = Math.sin(j) + Math.cos(j * 10) * k
-                cubex.position.z = Math.sin(k) + Math.cos(k * 10) * k
+                cubex.position.x = Math.sin(i * 12) + Math.cos(i * 5) * i
+                cubex.position.y = Math.sin(j * 2) + Math.cos(j * 5) * j
+                cubex.position.z = Math.sin(k * 5) + Math.sin(k * 20) * k
                 break
             }
 
