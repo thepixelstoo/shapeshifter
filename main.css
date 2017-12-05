@@ -1,0 +1,63 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Zilla Slab Highlight';
+  /* background: linear-gradient(15deg, rgb(10, 110, 220), rgb(10, 210, 200)); */
+  background-color: #000;
+  background-attachment: fixed;
+}
+
+header {
+  height: auto;
+  position: fixed;
+  z-index: 2;
+  color: #eee;
+  background-color: rgba(1, 1, 1, 0.5);
+  left: 0;
+  top: 0;
+  right: 0;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+
+header div {
+  padding: 5px 10px;
+  float: left;
+}
+
+#wrapper {
+  position: absolute;
+  z-index: 1;
+}
+
+#puzzle {
+  right: 0;
+  display: inline-block;
+  width: 180px;
+  position: fixed;
+}
+
+#puzzle.large {
+  width: 60vw;
+}
+
+#display {
+  position: absolute;
+  z-index: 4;
+  top: 20vh;
+  text-align: center;
+  font-size: 4em;
+  color: rgba(10, 210, 200, 0.9);
+  top: -30vh;
+  opacity: 0.0;
+  transition: 1.5s all;
+  -webkit-transition: 1.5s all;
+  width: 100%;
+}
+
+#display.on {
+  top: 30vh;
+  opacity: 1.0;
+  transition: 1s all;
+  -webkit-transition: 1s all;
+}
