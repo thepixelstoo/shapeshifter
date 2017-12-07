@@ -39,7 +39,7 @@ THREE.FresnelShader = {
       "vReflect = reflect( I, worldNormal );",
       "vRefract[0] = refract( normalize( I ), worldNormal, mRefractionRatio );",
       "vRefract[1] = refract( normalize( I ), worldNormal, mRefractionRatio * 0.99 );",
-      "vRefract[2] = refract( normalize( I ), worldNormal, mRefractionRatio * 0.98 );",
+      "vRefract[2] = refract( normalize( I ), worldNormal, mRefractionRatio * 0.18 );",
       "vReflectionFactor = mFresnelBias + mFresnelScale * pow( 1.0 + dot( normalize( I ), worldNormal ), mFresnelPower );",
 
       "gl_Position = projectionMatrix * mvPosition;",
@@ -50,6 +50,7 @@ THREE.FresnelShader = {
 
   fragmentShader: [
 
+    "uniform float percent;",
     "uniform samplerCube tCube;",
 
     "varying vec3 vReflect;",
@@ -61,12 +62,11 @@ THREE.FresnelShader = {
       "vec4 reflectedColor = textureCube( tCube, vec3( -vReflect.x, vReflect.yz ) );",
       "vec4 refractedColor = vec4( 1.0 );",
 
-      "refractedColor.r = textureCube( tCube, vec3( -vRefract[0].x, vRefract[0].yz ) ).r;",
-      "refractedColor.g = textureCube( tCube, vec3( -vRefract[1].x, vRefract[1].yz ) ).g;",
-      "refractedColor.b = textureCube( tCube, vec3( -vRefract[2].x, vRefract[2].yz ) ).b;",
+      "refractedColor.r = textureCube( tCube, vec3( -vRefract[0].x, vRefract[1].yz ) ).r;",
+      "refractedColor.g = textureCube( tCube, vec3( -vRefract[1].x, vRefract[2].yz ) ).g;",
+      "refractedColor.b = textureCube( tCube, vec3( -vRefract[2].x, vRefract[0].yz ) ).b;",
 
-      "gl_FragColor = mix( refractedColor, reflectedColor, clamp( vReflectionFactor, 0.0, 1.0 ) );",
-
+      "gl_FragColor = mix( refractedColor, reflectedColor, clamp( vReflectionFactor, 0.0, 0.0 ) );",
     "}"
 
   ].join("\n")
