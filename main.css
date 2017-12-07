@@ -28,7 +28,7 @@ body.win {
 header {
   height: auto;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   color: #eee;
   left: 0;
   top: 0;
