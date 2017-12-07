@@ -349,8 +349,9 @@
 
   var coord = camera.getWorldDirection(camVector)
 
-  next.onclick = function (ev) {
-    window.location.reload()
+  next.onclick = next.ontouchstart = function (ev) {
+    display.classList.remove('on')
+    //window.location.reload()
   }
 
   window.onmouseup = window.ontouchend = function (ev) {
