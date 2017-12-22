@@ -13,7 +13,7 @@
     "great strategy!",
     "excellent!",
     "you did it!",
-    "great spatial powers!",
+    "great spatial skills!",
     "wonderful!"
   ]
 
