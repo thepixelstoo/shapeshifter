@@ -3,6 +3,7 @@
   var currPuzzle = parseInt(window.localStorage.getItem('puzzle'), 10) || 0
   var next = document.querySelector('button')
   var body = document.querySelector('body')
+  var final = document.querySelector('#display2')
   var camVector = new THREE.Vector3()
 
   var successes = [
@@ -111,6 +112,10 @@
     alpha: true
   })
 
+  if (currLevel > 5) {
+    final.classList.add('on')
+  }
+
   renderer.preserveDrawingBuffer = true
   //renderer.autoClearColor = false
   renderer.setPixelRatio(window.devicePixelRatio)
@@ -135,7 +140,7 @@
   var orbit = new THREE.OrbitControls(camera, renderer.domElement)
   orbit.enableZoom = true
   orbit.minDistance = 50
-  orbit.maxDistance = 800
+  orbit.maxDistance = 600
 
   var skyGeometry = new THREE.CubeGeometry(5000, 5000, 5000)
 
@@ -383,9 +388,9 @@
 
   function plot() {
     var coord = camera.getWorldDirection(camVector)
-    header.querySelector('#x').textContent = 'x: ' + parseFloat(coord.x).toFixed(4)
-    header.querySelector('#y').textContent = 'y: ' + parseFloat(coord.y).toFixed(4)
-    header.querySelector('#z').textContent = 'z: ' + parseFloat(coord.z).toFixed(4)
+    //header.querySelector('#x').textContent = 'x: ' + parseFloat(coord.x).toFixed(4)
+    //header.querySelector('#y').textContent = 'y: ' + parseFloat(coord.y).toFixed(4)
+    //header.querySelector('#z').textContent = 'z: ' + parseFloat(coord.z).toFixed(4)
     header.querySelector('#level').textContent = 'L' + currLevel + ' P' + currPuzzle
 
     if (coord.x >= levels[currLevel][currPuzzle].x - 0.09 && coord.x <= levels[currLevel][currPuzzle].x + 0.09 &&
@@ -398,7 +403,9 @@
   }
 
   function getNextPuzzle() {
-    header.querySelector('#puzzle').src = 'levels/level-' + currLevel + '-' + currPuzzle + '.png'
+    if (currLevel < 6) {
+      header.querySelector('#puzzle').src = 'levels/level-' + currLevel + '-' + currPuzzle + '.png'
+    }
   }
 
   function render() {
@@ -415,21 +422,25 @@
 
   function displayLevelUp(levelUp) {
     if (levelUp) {
-      display.querySelector('p').textContent = 'LEVEL UP!!!'
+      if (currLevel > 5) {
+        final.classList.add('on')
+      } else {
+        display.querySelector('p').textContent = 'LEVEL UP!!!'
 
-      while (scene.children.length) {
-        scene.remove(scene.children[0])
+        while (scene.children.length) {
+          scene.remove(scene.children[0])
+        }
+
+        init()
+
+        display.querySelector('.message').textContent = successes[Math.floor(Math.random() * successes.length)]
+        display.classList.add('on')
       }
-
-      init()
-
     } else {
       display.querySelector('p').textContent = '+1'
+      display.querySelector('.message').textContent = successes[Math.floor(Math.random() * successes.length)]
+      display.classList.add('on')
     }
-
-    display.querySelector('.message').textContent = successes[Math.floor(Math.random() * successes.length)]
-
-    display.classList.add('on')
   }
 
   var coord = camera.getWorldDirection(camVector)

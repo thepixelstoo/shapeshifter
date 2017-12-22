@@ -63,7 +63,7 @@ header div {
   width: 60vw;
 }
 
-#display {
+#display, #display2 {
   background-image: url(https://media1.giphy.com/media/26mkhTKYBbyy8904g/giphy.gif);
   background-size: cover;
   position: absolute;
@@ -80,11 +80,15 @@ header div {
   overflow: hidden;
 }
 
-#display .message {
+#display2 {
+  background-image: url(https://media2.giphy.com/media/Dp0TCAapfHVpm/giphy.gif);
+}
+
+#display .message, #display2 .message {
   font-size: 2rem;
 }
 
-#display.on {
+#display.on, #display2.on {
   top: 0;
   height: 100vh;
   opacity: 1.0;
